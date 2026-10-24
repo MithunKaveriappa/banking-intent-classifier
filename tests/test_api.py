@@ -42,3 +42,12 @@ def test_blank_text_rejected(client):
 
 def test_invalid_top_k_rejected(client):
     assert client.post("/predict", json={"text": "hello", "top_k": 50}).status_code == 422
+
+def test_confident_on_clear_message(client):
+    r = client.post("/predict", json={"text": "My card has not arrived yet"})
+    assert r.json()["confident"] is True
+
+
+def test_not_confident_on_gibberish(client):
+    r = client.post("/predict", json={"text": "asdfgh jkl"})
+    assert r.json()["confident"] is False

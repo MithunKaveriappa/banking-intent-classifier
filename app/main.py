@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
@@ -6,7 +7,7 @@ from pydantic import BaseModel, Field
 from src.predictor import IntentClassifier
 
 state = {}
-
+CONFIDENCE_THRESHOLD = float(os.getenv("CONFIDENCE_THRESHOLD", "0.30"))
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -37,6 +38,7 @@ class Prediction(BaseModel):
 
 class PredictResponse(BaseModel):
     text: str
+    confident: bool
     predictions: list[Prediction]
 
 
@@ -50,4 +52,8 @@ def predict(req: PredictRequest):
     if not req.text.strip():
         raise HTTPException(status_code=422, detail="Text must not be blank.")
     preds = state["clf"].predict([req.text], top_k=req.top_k)[0]
-    return PredictResponse(text=req.text, predictions=preds)
+    return PredictResponse(
+        text=req.text,
+        confident=preds[0]["score"] >= CONFIDENCE_THRESHOLD,
+        predictions=preds,
+    )

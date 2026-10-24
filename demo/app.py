@@ -13,7 +13,11 @@ def classify(text):
     out = clf(text, top_k=5, truncation=True, max_length=64)
     if out and isinstance(out[0], list):   # some versions nest the result
         out = out[0]
-    return {r["label"]: float(r["score"]) for r in out}
+    result = {r["label"]: float(r["score"]) for r in out}
+    threshold = float(os.getenv("CONFIDENCE_THRESHOLD", "0.30"))
+    if max(result.values()) < threshold:
+        gr.Info("Low confidence: this message may be outside the 77 banking intents.")
+    return result
 
 
 demo = gr.Interface(
