@@ -1,0 +1,4 @@
+model,accuracy,macro_f1
+TF-IDF + LogReg,0.8898,0.8899
+BGE-small embeddings + LogReg,0.9311,0.931
+DistilBERT fine-tuned,0.9217,0.9217

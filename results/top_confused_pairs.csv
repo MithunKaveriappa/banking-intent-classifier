@@ -1,0 +1,16 @@
+times,true_label,predicted_as
+7,why_verify_identity,verify_my_identity
+6,declined_transfer,declined_card_payment
+5,get_disposable_virtual_card,getting_virtual_card
+4,wrong_exchange_rate_for_cash_withdrawal,card_payment_wrong_exchange_rate
+4,verify_my_identity,why_verify_identity
+4,fiat_currency_support,exchange_via_app
+4,compromised_card,lost_or_stolen_card
+4,card_payment_not_recognised,compromised_card
+4,card_arrival,card_delivery_estimate
+3,wrong_amount_of_cash_received,declined_cash_withdrawal
+3,transfer_timing,balance_not_updated_after_bank_transfer
+3,top_up_reverted,top_up_failed
+3,reverted_card_payment,declined_card_payment
+3,pin_blocked,change_pin
+3,pending_transfer,transfer_not_received_by_recipient
