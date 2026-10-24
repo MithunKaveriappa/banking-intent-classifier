@@ -1,0 +1,11 @@
+.venv
+.git
+.github
+models
+notebooks
+results
+scripts
+tests
+__pycache__
+.pytest_cache
+*.ipynb
