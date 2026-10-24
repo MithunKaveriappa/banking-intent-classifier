@@ -1,0 +1,6 @@
+{
+  "model": "distilbert-base-uncased",
+  "dataset": "mteb/banking77",
+  "test_accuracy": 0.9216514954486346,
+  "test_macro_f1": 0.921742685550017
+}
