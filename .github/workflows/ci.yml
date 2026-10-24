@@ -9,7 +9,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      MODEL_PATH: YOUR_HF_USERNAME/banking77-distilbert
+      MODEL_PATH: MithunKaveriappa/banking77-distilbert
     steps:
       - uses: actions/checkout@v4
 
